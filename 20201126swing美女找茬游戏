@@ -1,0 +1,64 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URL;
+
+public class App {
+    JPanel myPanel=new JPanel();
+    JLabel label_back = new JLabel();
+    JLabel label_score = new JLabel();
+    int score,score1,score2,score3,score4;
+
+    public App(){
+        label_back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (e.getX()<56 && e.getY()<474){
+                    score1=1;
+                    score=score1+score2+score3+score4;
+                    label_score.setText("得分："+String.valueOf(score));
+                }
+                if (e.getX()<67 && e.getY()<397){
+                    score2=1;
+                    score=score1+score2+score3+score4;
+                    label_score.setText("得分："+String.valueOf(score));
+                }
+                if (e.getX()<164 && e.getY()<428){
+                    score3=1;
+                    score=score1+score2+score3+score4;
+                    label_score.setText("得分："+String.valueOf(score));
+                }
+                if (e.getX()<74 && e.getY()<270){
+                    score4=1;
+                    score=score1+score2+score3+score4;
+                    label_score.setText("得分："+String.valueOf(score));
+                }
+                System.out.println(e.getX()+"");//获取X的坐标值
+                System.out.println(e.getY()+"");//获取Y的坐标值
+            }
+        });
+    }
+    void go(){
+        URL imgURL = App.class.getResource("img/AAA.jpg");
+        label_back.setIcon(new ImageIcon(imgURL));
+        label_back.setBounds(0,0,1000,800);
+
+        label_score.setText("得分：0");
+        label_score.setBounds(0,0,200,50);//设置分数的坐标值
+        myPanel.add(label_score);//添加分数的组件
+        myPanel.add(label_back);//添加背景图片的组件
+
+        JFrame frame = new JFrame("美女找茬游戏");
+        myPanel.setLayout(null);//为布局设置为空
+        frame.setContentPane(myPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBounds(0,0,1000,800);//设置x和y距离屏幕0，宽1000，高800
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {//这个是main主方法
+        new App().go();//将go的方法添加进来
+    }
+}
